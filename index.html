@@ -103,5 +103,78 @@
       <button type="submit" aria-label="Send message">➤</button>
     </form>
   </section>
+  <script>
+    const chatWidget = document.getElementById("chatWidget");
+    const chatLauncher = document.getElementById("chatLauncher");
+    const chatClose = document.getElementById("chatClose");
+    const chatForm = document.getElementById("chatForm");
+    const chatInput = document.getElementById("chatInput");
+    const chatMessages = document.getElementById("chatMessages");
+
+    function openChat() {
+      chatWidget.classList.add("chat-open");
+      chatInput.focus();
+    }
+
+    function closeChat() {
+      chatWidget.classList.remove("chat-open");
+    }
+
+    function addMessage(text, type) {
+      const bubble = document.createElement("div");
+      bubble.className = "chat-bubble " + type;
+      bubble.textContent = text;
+      chatMessages.appendChild(bubble);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function demoReply(question) {
+      const text = question.toLowerCase();
+
+      if (text.includes("work") || text.includes("website")) {
+        return "Add one LAS VIVAX widget code to your website, then customize your business details, products, FAQs, and customer actions.";
+      }
+
+      return "LAS VIVAX helps websites answer visitor questions, guide customers, capture leads, and connect them to WhatsApp, booking, or checkout.";
+    }
+
+    chatLauncher.addEventListener("click", openChat);
+    chatClose.addEventListener("click", closeChat);
+
+    document.querySelectorAll('a[href="#demo"]').forEach(function (button) {
+      button.addEventListener("click", function (event) {
+        event.preventDefault();
+        openChat();
+      });
+    });
+
+    document.querySelectorAll("[data-question]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const question = button.dataset.question;
+        addMessage(question, "user-bubble");
+
+        setTimeout(function () {
+          addMessage(demoReply(question), "bot-bubble");
+        }, 400);
+      });
+    });
+
+    chatForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const question = chatInput.value.trim();
+
+      if (!question) {
+        return;
+      }
+
+      addMessage(question, "user-bubble");
+      chatInput.value = "";
+
+      setTimeout(function () {
+        addMessage(demoReply(question), "bot-bubble");
+      }, 500);
+    });
+  </script>
 </body>
 </html>
