@@ -63,6 +63,45 @@
   <footer>
     <span>LAS VIVAX AI</span>
     <span>© 2026</span>
-  </footer>
+  </footer>  <button class="chat-launcher" id="chatLauncher" aria-label="Open LAS VIVAX chat">
+    ✦
+  </button>
+
+  <section class="chat-widget" id="chatWidget" aria-label="LAS VIVAX chat">
+    <div class="chat-widget-header">
+      <div>
+        <strong>LAS VIVAX</strong>
+        <small>AI assistant · Online</small>
+      </div>
+
+      <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-bubble bot-bubble">
+        Hi! I’m LAS VIVAX. How can I help your business today?
+      </div>
+
+      <div class="chat-quick-actions">
+        <button type="button" data-question="What can LAS VIVAX do?">
+          What can it do?
+        </button>
+
+        <button type="button" data-question="How do I add it to my website?">
+          How does it work?
+        </button>
+      </div>
+    </div>
+
+    <form class="chat-form" id="chatForm">
+      <input
+        id="chatInput"
+        type="text"
+        placeholder="Type your question..."
+        autocomplete="off"
+      >
+      <button type="submit" aria-label="Send message">➤</button>
+    </form>
+  </section>
 </body>
 </html>
